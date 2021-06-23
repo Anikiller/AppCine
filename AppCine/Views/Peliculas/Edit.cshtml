@@ -1,0 +1,78 @@
+﻿@model AppCine.Models.Pelicula
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Editar</h1>
+
+<h4>Pelicula</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @*En esta sección se crea el formulario*@
+        <form asp-action="Edit" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*El identificador está oculto en la vista porque no se puede modificar*@
+            <input type="hidden" asp-for="id" />
+            @*Solicita la descripción del producto*@
+            <div class="form-group">
+                <label asp-for="nomPelicula" class="control-label"></label>
+                <input asp-for="nomPelicula" class="form-control" />
+                <span asp-validation-for="nomPelicula" class="text-danger"></span>
+            </div>
+            @*Solicita el precio del producto*@
+            <div class="form-group">
+                <label asp-for="tipoPelicula" class="control-label"></label>
+                <input asp-for="tipoPelicula" class="form-control" />
+                <span asp-validation-for="tipoPelicula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Foto</label>
+                <input type="file" class="form-control" name="files" />
+                <div>
+                    @*creamos el contenedor que contiene el botón para aplicar la acción de modificar*@
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Confirmar">
+                            Aplicar
+                        </button>
+                        @*Esta seccion tiene nuestra clase modal*@
+                        <div id="Confirmar" class="modal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="titulo">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    @*Construimos el encabezado*@
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="titulo">Confirmar modificación de la Pelicula</h5>
+                                    </div>
+                                    @*Cuerpo de la vista modal*@
+                                    <div class="modal-body">
+                                        <p>Está seguro que desea modificar la Pelicula @Model.nomPelicula</p>
+                                    </div>
+                                    @*Cuerpo del pie de la vista*@
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Aplicar cambios" class="btn btn-primary" />
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="cupos" class="control-label"></label>
+                <input asp-for="cupos" class="form-control" />
+                <span asp-validation-for="cupos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nombreCine" class="control-label"></label>
+                <input asp-for="nombreCine" class="form-control" />
+                <span asp-validation-for="nombreCine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

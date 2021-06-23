@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AppCine.Models.Pelicula>
+@{
+    ViewData["Title"] = "Consulta de Peliculas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}<h1>Reservaciones</h1>
+ <table class="table">
+     <thead>
+         <tr>
+             <th>
+                 @Html.DisplayNameFor(model => model.nomPelicula)
+             </th>
+             <th>
+                 @Html.DisplayNameFor(model => model.tipoPelicula)
+             </th>
+             <th>
+                 @Html.DisplayNameFor(model => model.reserva)
+             </th>
+             <th>
+                 @Html.DisplayNameFor(model => model.cupos)
+             </th>
+             <th>
+                 @Html.DisplayNameFor(model => model.nombreCine)
+             </th>
+             <th></th>
+         </tr>
+     </thead>
+     <tbody>
+         @foreach (var item in Model)
+         {
+             <tr>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.nomPelicula)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.tipoPelicula)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.reserva)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.cupos)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.nombreCine)
+                 </td>
+                 <td>
+                     <a class="btn btn-primary" asp-action="EditarReservaciones" asp-route-id="@item.id">Editar Reservaciones</a>
+                 </td>
+             </tr>
+         }
+     </tbody>
+ </table>

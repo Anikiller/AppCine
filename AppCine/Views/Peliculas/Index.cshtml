@@ -1,0 +1,100 @@
+﻿@model IEnumerable<AppCine.Models.Pelicula>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nomPelicula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipoPelicula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cupos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreCine)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomPelicula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoPelicula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reserva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cupos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreCine)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a class="btn btn-primary" data-toggle="modal" data-target="#P-@item.id">Detalle</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    @foreach (var item in Model)
+    {
+        //modal para cada producto a mostrar dentro de la vista Modal
+        //modal= vista que se abre dentro del mismo entrono web
+        <div id="P-@item.id" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        @*Va desplegar el titulo de la vista modal*@
+                        <h5 class="modal-title">Pelicula: <br>@item.nomPelicula</h5>
+                        @*Botón de cerrar de la vista modal*@
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @*En esta sección vamos a desplegar la información restante del producto*@
+                    <div class="modal-body">
+                        @*se muestra el precio de la compra*@
+                        <div class="text-left mb-4">
+                            <p>@item.tipoPelicula</p>
+                        </div>
+                        @*se muestra la imagen del producto*@
+                        @*alt= proporciona un texto equivalente al objeto como parte de un texto*@
+                        <img src="@item.foto" alt="Pelicula" class="img-fluid" />
+
+                        <div class="text-left mb-4">
+                            @*se muestra el porcentaje del impuesto del producto*@
+                            <p>@item.nombreCine</p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    } @*fin del ciclo*@
+
+</div>

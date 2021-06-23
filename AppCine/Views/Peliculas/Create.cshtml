@@ -1,0 +1,56 @@
+﻿@model AppCine.Models.Pelicula
+@{
+    ViewData["Title"] = "Agregar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Agregar Pelicuals</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="id" class="control-label"></label>
+                <input asp-for="id" class="form-control" />
+                <span asp-validation-for="id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nomPelicula" class="control-label"></label>
+                <input asp-for="nomPelicula" class="form-control" />
+                <span asp-validation-for="nomPelicula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tipoPelicula" class="control-label"></label>
+                <input asp-for="tipoPelicula" class="form-control" />
+                <span asp-validation-for="tipoPelicula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="reserva" class="control-label"></label>
+                <input asp-for="reserva" class="form-control" />
+                <span asp-validation-for="reserva" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="foto" class="control-label"></label>
+                <input asp-for="foto" name="files" type="file" /> @*Se cambia  la class del form-control por el tipo file*@
+                <span asp-validation-for="foto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cupos" class="control-label"></label>
+                <input asp-for="cupos" class="form-control" />
+                <span asp-validation-for="cupos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nombreCine" class="control-label"></label>
+                <input asp-for="nombreCine" class="form-control" />
+                <span asp-validation-for="nombreCine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
